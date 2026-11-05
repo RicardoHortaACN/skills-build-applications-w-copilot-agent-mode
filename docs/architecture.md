@@ -28,13 +28,13 @@ OctoFit Tracker is a three-tier application for a school fitness program. The st
 
 ## Implementation decisions
 
-- Presentation tier: Keep the four capability components responsible for their own loading, success, empty, and error states; use the shared API client for relative `/api` requests and accessible status and alert text.
-- Logic tier: Keep Express routes as thin request/response adapters and implement validation and business behavior in explicit service functions. Return deliberate 4xx responses for invalid input, malformed or missing references, and unknown users.
-- Data tier: Express persistence through Mongoose schemas with required fields, references, and sensible defaults. Keep seed data idempotent and preserve unrelated records while reconciling seeded users' team memberships.
-- Activity tracking: Validate required fields and well-formed existing user and team IDs before writing; compute points and the occurrence date on the server, then return the persisted activity from create and list operations.
-- Team management: Require a name, retain the submitted name and mascot, and support a default empty members array and submitted member references.
-- Leaderboard: Aggregate activity points by team, order totals descending, and assign one-based ranks in the service response.
-- Workout suggestions: Find the requested user by email, use their fitness goal and recent activity to select and explain relevant workout suggestions, and return a 4xx for an unknown email.
+- Presentation tier decision: Keep the four capability components responsible for their own loading, success, empty, and error states; use the shared API client for relative `/api` requests and accessible status and alert text.
+- Logic tier decision: Keep Express routes as thin request/response adapters and implement validation and business behavior in explicit service functions. Return deliberate 4xx responses for invalid input, malformed or missing references, and unknown users.
+- Data tier decision: Express persistence through Mongoose schemas with required fields, references, and sensible defaults. Keep seed data idempotent and preserve unrelated records while reconciling seeded users' team memberships.
+- Activity tracking approach: Validate required fields and well-formed existing user and team IDs before writing; compute points and the occurrence date on the server, then return the persisted activity from create and list operations.
+- Team management approach: Require a name, retain the submitted name and mascot, and support a default empty members array and submitted member references.
+- Leaderboard approach: Aggregate activity points by team, order totals descending, and assign one-based ranks in the service response.
+- Workout suggestions approach: Find the requested user by email, use their fitness goal and recent activity to select and explain relevant workout suggestions, and return a 4xx for an unknown email.
 
 ## Test plan
 
